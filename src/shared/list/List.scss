@@ -1,0 +1,46 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.list-component {
+  @include flex(row wrap, space-evenly, stretch);
+  margin: 0.13rem auto;
+  border: 0.25px solid $negro;
+  text-align: center;
+  width: 90%;
+  padding: 0.5rem 0.5rem;
+  background-color: $gris;
+  > .list-item-separator {
+    height: 5rem;
+    .titulo {
+      height: 20%;
+      width: 100%;
+      background-color: $gris;
+      font-weight: $bolder;
+    }
+    &.enviado {
+      flex-grow: 1;
+      > .data-item > input {
+        height: 2rem;
+        width: 2rem;
+      }
+    }
+    &.verificado {
+      flex-grow: 1;
+    }
+    &.direccion {
+      > .data-item {
+        @include flex(row, space-evenly, center);
+        flex-wrap: wrap;
+        height: 80%;
+        > p {
+          display: inline;
+        }
+      }
+      flex-grow: 3;
+    }
+    .data-item {
+      @include flex(column, center, center);
+      height: 80%;
+    }
+  }
+}

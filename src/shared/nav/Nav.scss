@@ -1,0 +1,7 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+.nav-component {
+  @include flex(row, center, center);
+  background-color: $gris;
+  height: 3rem;
+}
