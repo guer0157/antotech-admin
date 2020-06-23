@@ -4,7 +4,9 @@
 .list-component {
   @include flex(row wrap, space-evenly, stretch);
   margin: 0.13rem auto;
-  border: 0.25px solid $negro;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.2);
+  border-radius: 10px;
   text-align: center;
   width: 90%;
   padding: 0.5rem 0.5rem;
