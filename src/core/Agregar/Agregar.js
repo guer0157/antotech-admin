@@ -28,7 +28,7 @@ function Agregar(props) {
       JSON.stringify(formState)
     ).catch((err) => console.log(err));
     if (!!guardarGuiaNueva) {
-      props.hideForm(true);
+      props.hideForm(guardarGuiaNueva);
     }
   };
   return (

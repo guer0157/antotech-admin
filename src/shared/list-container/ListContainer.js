@@ -8,12 +8,17 @@ function ListContainer() {
   //useEfect with empty array [] = ComponentDIdMount;
   const toggleShowForm = (showToast) => {
     setShowForm(!showForm);
-    if (showToast === true) {
+    if (!!showToast.type) {
+      console.log(showToast);
+    } else {
       setShowToast(true);
+      let agregarGuias = [...guias];
+      agregarGuias.push(showToast);
+      guardarGuias(agregarGuias);
+      setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
     }
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000);
   };
   useEffect(() => {
     fetchItems();
