@@ -3,8 +3,13 @@
 @import "../../styles/styles.scss";
 .list-container-component {
   text-align: center;
-  .base-button.filtro {
-    background-color: $negro;
-    color: whitesmoke;
+  .base-button {
+    &.danger {
+      background-color: $rojo;
+    }
+    &.filtro {
+      background-color: $negro;
+      color: whitesmoke;
+    }
   }
 }

@@ -25,7 +25,7 @@ function List(props) {
   }, [props.data._id, props.data.fueEnviado]);
   const guia = props.data;
   return (
-    <li className="list-component">
+    <li className="list-component border-shadow-radius">
       <div className="list-item-separator">
         <div className="titulo">
           <p className="titulo-texto">Paqueteria</p>

@@ -1,9 +1,7 @@
 @import "../../styles/mixins.scss";
 @import "../../styles/variables.scss";
 @import "../../styles/styles.scss";
-input {
-  border: 2px solid $negro;
-}
+
 .agregar-component {
   @include flex(column, center, center);
   display: flex;
@@ -13,7 +11,14 @@ input {
   width: 90%;
   margin: 0.5rem auto 2rem;
   > input {
-    width: 100%;
+    width: 50%;
     height: 1.5rem;
+    border-radius: 3px;
+  }
+  > label {
+    color: rgb(66, 61, 61);
+  }
+  .checkbox {
+    box-shadow: none;
   }
 }

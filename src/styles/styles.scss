@@ -24,3 +24,8 @@
     margin-top: 1rem;
   }
 }
+.border-shadow-radius {
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  box-shadow: 1px 1px 4px rgba(128, 128, 128, 0.2);
+  border-radius: 10px;
+}

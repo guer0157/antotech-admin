@@ -34,7 +34,10 @@ function ListContainer() {
           <p>La guia ha sido guardada</p>
         </div>
       )}
-      <button className="base-button" onClick={toggleShowForm}>
+      <button
+        className={"base-button " + (showForm ? "danger" : "")}
+        onClick={toggleShowForm}
+      >
         {showForm ? "Cancelar" : "Agregar"}
       </button>
       {showForm && <Agregar hideForm={toggleShowForm} />}

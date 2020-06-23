@@ -34,31 +34,96 @@ function Agregar(props) {
   return (
     <div className="agregar-component">
       <label>Paqueteria</label>
-      <input type="text" id="paqueteria" onChange={handleChange} />
+      <input
+        className="border-shadow-radius"
+        type="text"
+        id="paqueteria"
+        onChange={handleChange}
+      />
       <label># de Guia</label>
-      <input type="number" id="numeroGuia" onChange={handleChange} />
+      <input
+        className="border-shadow-radius"
+        type="number"
+        id="numeroGuia"
+        onChange={handleChange}
+      />
       <label>Nombre</label>
-      <input type="text" id="nombreCliente" onChange={handleChange} />
+      <input
+        className="border-shadow-radius"
+        type="text"
+        id="nombreCliente"
+        onChange={handleChange}
+      />
       <label>Calle</label>
-      <input type="text" id="calle" onChange={handleChange} />
+      <input
+        className="border-shadow-radius"
+        type="text"
+        id="calle"
+        onChange={handleChange}
+      />
       <label>Numero/Unidad/Lt</label>
-      <input type="number" id="numero" onChange={handleChange} />
+      <input
+        className="border-shadow-radius"
+        type="number"
+        id="numero"
+        onChange={handleChange}
+      />
       <label>Ciudad</label>
-      <input type="text" id="ciudad" onChange={handleChange} />
+      <input
+        className="border-shadow-radius"
+        type="text"
+        id="ciudad"
+        onChange={handleChange}
+      />
       <label>Estado</label>
-      <input type="text" id="estado" onChange={handleChange} />
+      <input
+        className="border-shadow-radius"
+        type="text"
+        id="estado"
+        onChange={handleChange}
+      />
       <label>Pais</label>
-      <input type="text" id="pais" onChange={handleChange} />
+      <input
+        className="border-shadow-radius"
+        type="text"
+        id="pais"
+        onChange={handleChange}
+      />
       <label>Fecha</label>
-      <input type="date" id="fecha" onChange={handleChange} />
+      <input
+        className="border-shadow-radius"
+        type="date"
+        id="fecha"
+        onChange={handleChange}
+      />
       <label>Productos</label>
-      <input type="text" id="productos" onChange={handleChange} />
+      <input
+        className="border-shadow-radius"
+        type="text"
+        id="productos"
+        onChange={handleChange}
+      />
       <label>Codigo postal</label>
-      <input type="number" id="codigoPostal" onChange={handleChange} />
+      <input
+        className="border-shadow-radius"
+        type="number"
+        id="codigoPostal"
+        onChange={handleChange}
+      />
       <label>Fue enviado</label>
-      <input type="checkbox" id="fueEnviado" onChange={handleChange} />
+      <input
+        className="border-shadow-radius checkbox"
+        type="checkbox"
+        id="fueEnviado"
+        onChange={handleChange}
+      />
       <label>Verificado por</label>
-      <input type="text" id="verificadoPor" onChange={handleChange} />
+      <input
+        className="border-shadow-radius"
+        type="text"
+        id="verificadoPor"
+        onChange={handleChange}
+      />
       <button className="base-button" onClick={guardarGuia}>
         Guardar
       </button>
