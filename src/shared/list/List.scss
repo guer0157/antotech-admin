@@ -3,7 +3,7 @@
 
 .list-component {
   @include flex(row wrap, space-evenly, stretch);
-  margin: 0.13rem auto;
+  margin: 0.5rem auto;
   text-align: center;
   width: 90%;
   padding: 0.5rem 0.5rem;
