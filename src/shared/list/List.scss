@@ -38,6 +38,9 @@
       }
       flex-grow: 3;
     }
+    &.productos {
+      flex-grow: 3;
+    }
     .data-item {
       @include flex(column, center, center);
       height: 80%;

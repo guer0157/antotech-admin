@@ -2,12 +2,10 @@ export let baseURL = `https://guiasapi.czarware.tech/api/guias`;
 let composedURL = baseURL;
 let options = null;
 export const prepareCall = async (method, identifiers, data) => {
-  console.log("OPT", data);
   if (!!data) {
-    let body = JSON.stringify(data);
     options = {
       method: method,
-      body: body,
+      body: data,
       mode: "cors",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -24,9 +22,10 @@ export const prepareCall = async (method, identifiers, data) => {
   return await makeCall(composedURL, options);
 };
 const makeCall = async (url, options) => {
-  console.log("fetch(" + url, options + ")", options);
+  // console.log("fetch(" + url, options + ")", options);
   let response;
   if (!!options) {
+    console.log(url, options);
     response = await fetch(url, options);
   } else {
     response = await fetch(url);

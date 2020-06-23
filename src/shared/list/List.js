@@ -3,6 +3,7 @@ import "../../App.scss";
 import "./List.scss";
 import { Link } from "react-router-dom";
 import { prepareCall } from "../../utils/fetchUtil";
+import Moment from "react-moment";
 
 function List(props) {
   const [id, setid] = useState([]);
@@ -66,6 +67,24 @@ function List(props) {
             checked={checked}
             onChange={marcarComoEnviado}
           />
+        </div>
+      </div>
+      <div className=" list-item-separator fecha">
+        <div className="titulo">
+          <p className="titulo-texto">Fecha</p>
+        </div>
+        <div className="data-item">
+          <p>
+            <Moment format="DD/MM/YYYY">{guia.fecha}</Moment>
+          </p>
+        </div>
+      </div>
+      <div className=" list-item-separator productos">
+        <div className="titulo">
+          <p className="titulo-texto">Productos</p>
+        </div>
+        <div className="data-item">
+          <p>{guia.productos}</p>
         </div>
       </div>
       <div className="list-item-separator verificado">

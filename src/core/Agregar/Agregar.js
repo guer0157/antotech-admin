@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import "../../App.scss";
 import "./Agregar.scss";
-import { prepareCall, baseURL } from "../../utils/fetchUtil";
+import { prepareCall } from "../../utils/fetchUtil";
 
-function Agregar() {
+function Agregar(props) {
   const [formState, setformState] = useState({});
   const handleChange = (ev) => {
     const id = ev.currentTarget.id;
     let value = ev.currentTarget.value;
     if (id === "fueEnviado") {
       value = ev.currentTarget.checked;
+    } else if (id === "productos") {
+      JSON.stringify([ev.currentTarget.value]);
+      // productos.push(ev.currentTarget.value);
     } else {
       value = ev.currentTarget.value;
     }
@@ -19,47 +22,42 @@ function Agregar() {
     setformState(newState);
   };
   const guardarGuia = async () => {
-    // console.log(formState);
-    // prepareCall("POST", null, formState);
-    console.log(formState);
-    let body = JSON.stringify(formState);
-    let opt = {
-      method: "POST",
-      body: body,
-      mode: "cors",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    };
-    fetch(baseURL, opt)
-      .then((resp) => resp.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
+    let guardarGuiaNueva = await prepareCall(
+      "POST",
+      null,
+      JSON.stringify(formState)
+    ).catch((err) => console.log(err));
+    if (!!guardarGuiaNueva) {
+      props.hideForm(true);
+    }
   };
   return (
     <div className="agregar-component">
-      <label> paqueteria</label>
+      <label>Paqueteria</label>
       <input type="text" id="paqueteria" onChange={handleChange} />
-      <label>numeroGuia</label>
+      <label># de Guia</label>
       <input type="number" id="numeroGuia" onChange={handleChange} />
-      <label> nombreCliente</label>
+      <label>Nombre</label>
       <input type="text" id="nombreCliente" onChange={handleChange} />
-      <label>calle</label>
+      <label>Calle</label>
       <input type="text" id="calle" onChange={handleChange} />
-      <label>calleNumero</label>
+      <label>Numero/Unidad/Lt</label>
       <input type="number" id="numero" onChange={handleChange} />
-      <label>ciudad</label>
+      <label>Ciudad</label>
       <input type="text" id="ciudad" onChange={handleChange} />
-      <label> estado</label>
+      <label>Estado</label>
       <input type="text" id="estado" onChange={handleChange} />
-      <label>pais</label>
+      <label>Pais</label>
       <input type="text" id="pais" onChange={handleChange} />
-      <label>codigoPostal</label>
+      <label>Fecha</label>
+      <input type="date" id="fecha" onChange={handleChange} />
+      <label>Productos</label>
+      <input type="text" id="productos" onChange={handleChange} />
+      <label>Codigo postal</label>
       <input type="number" id="codigoPostal" onChange={handleChange} />
-      <label> fueEnviado</label>
+      <label>Fue enviado</label>
       <input type="checkbox" id="fueEnviado" onChange={handleChange} />
-      <label>verificadoPor</label>
+      <label>Verificado por</label>
       <input type="text" id="verificadoPor" onChange={handleChange} />
       <button className="base-button" onClick={guardarGuia}>
         Guardar
