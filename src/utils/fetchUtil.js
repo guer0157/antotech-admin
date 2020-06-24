@@ -23,16 +23,15 @@ export const prepareCall = async (method, identifiers, data) => {
   return await makeCall(composedURL, options);
 };
 const makeCall = async (url, options) => {
-
   if (!!options) {
     return fetch(url, options)
-      .then(response=>response.json())
-      .then(data=>data)
-      .catch(err=>err);
+      .then((response) => response.json())
+      .then((data) => data)
+      .catch((err) => err);
   } else {
-        return fetch(url, options)
-      .then(response=>response.json())
-      .then(data=>data)
-      .catch(err=>err)
+    return fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => data)
+      .catch((err) => err);
   }
 };

@@ -11,7 +11,7 @@ function Agregar(props) {
     if (id === "fueEnviado") {
       value = ev.currentTarget.checked;
     } else if (id === "productos") {
-      ev.currentTarget.value;
+      value = ev.currentTarget.value;
     } else {
       value = ev.currentTarget.value;
     }
