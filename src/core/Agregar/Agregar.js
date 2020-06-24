@@ -11,8 +11,7 @@ function Agregar(props) {
     if (id === "fueEnviado") {
       value = ev.currentTarget.checked;
     } else if (id === "productos") {
-      JSON.stringify([ev.currentTarget.value]);
-      // productos.push(ev.currentTarget.value);
+      ev.currentTarget.value;
     } else {
       value = ev.currentTarget.value;
     }
@@ -26,8 +25,8 @@ function Agregar(props) {
       "POST",
       null,
       JSON.stringify(formState)
-    ).catch((err) => console.log(err));
-    if (!!guardarGuiaNueva) {
+    ).catch((err) => console.log(err.message));
+    if (!!guardarGuiaNueva._id) {
       props.hideForm(guardarGuiaNueva);
     }
   };

@@ -1,4 +1,5 @@
-export let baseURL = `https://guiasapi.czarware.tech/api/guias`;
+export const baseURL = `https://guiasapi.czarware.tech/api/guias`;
+
 let composedURL = baseURL;
 let options = null;
 export const prepareCall = async (method, identifiers, data) => {
@@ -22,14 +23,16 @@ export const prepareCall = async (method, identifiers, data) => {
   return await makeCall(composedURL, options);
 };
 const makeCall = async (url, options) => {
-  // console.log("fetch(" + url, options + ")", options);
-  let response;
+
   if (!!options) {
-    console.log(url, options);
-    response = await fetch(url, options);
+    return fetch(url, options)
+      .then(response=>response.json())
+      .then(data=>data)
+      .catch(err=>err);
   } else {
-    response = await fetch(url);
+        return fetch(url, options)
+      .then(response=>response.json())
+      .then(data=>data)
+      .catch(err=>err)
   }
-  const data = await response.json();
-  return data;
 };
