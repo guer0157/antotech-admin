@@ -29,7 +29,6 @@ const makeCall = async (url, options) => {
     return fetch(url, options)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         return data;
       })
       .catch((err) => err);
@@ -37,7 +36,6 @@ const makeCall = async (url, options) => {
     return fetch(url, options)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         return data;
       })
       .catch((err) => {

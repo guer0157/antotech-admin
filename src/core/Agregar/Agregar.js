@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../App.scss";
 import "./Agregar.scss";
 import { prepareCall } from "../../utils/fetchUtil";
-import moment from 'moment'
+import moment from "moment";
 
 function Agregar(props) {
   const [formState, setformState] = useState({});
@@ -13,16 +13,10 @@ function Agregar(props) {
       value = ev.currentTarget.checked;
     } else if (id === "productos") {
       value = ev.currentTarget.value;
-    } else if(id === "fecha"){
-    let tD=Date(ev.currentTarget.value);
-    console.log("fecha",tD)
-        let target=moment(tD).toISOString()
-         let d=target.split("T");
-         let t=d[0]+"T00:00:00.000Z"  
-         console.log("TETETETE",t);
-         value=t;
-                 console.log("TETETETE",value);
-    }else {
+    } else if (id === "fecha") {
+      let target = moment(ev.currentTarget.value).toISOString().split("T");
+      value = target[0] + "T00:00:00.000Z";
+    } else {
       value = ev.currentTarget.value;
     }
 

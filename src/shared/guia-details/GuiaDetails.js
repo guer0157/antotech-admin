@@ -8,7 +8,7 @@ function GuiaDetails({ match }) {
       const call = await fetch(
         `https://guiasapi.czarware.tech/api/guias/${match.params.id}`
       );
-      const body = await call.json();
+      await call.json();
     };
     fetchItem();
   }, [match.params.id]);

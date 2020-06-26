@@ -3,8 +3,7 @@ import "../../App.scss";
 import "./ListContainer.scss";
 import List from "../../shared/list/List";
 import Agregar from "../../core/Agregar/Agregar";
-import moment from "moment";
-import { prepareCall, baseURL } from "../../utils/fetchUtil";
+import { prepareCall } from "../../utils/fetchUtil";
 import Filtros from "../filtros-container/Filtros";
 
 function ListContainer() {
@@ -12,7 +11,6 @@ function ListContainer() {
   const toggleShowForm = (showToast) => {
     setShowForm(!showForm);
     if (!!showToast.type) {
-      console.log(showToast);
     } else {
       setShowToast(true);
       let agregarGuias = [...guias];
@@ -31,18 +29,17 @@ function ListContainer() {
   const [showToast, setShowToast] = useState(false);
   const [showFiltros, setshowFiltros] = useState(false);
   const toggleShowFiltros = () => {
-      if(showFiltros){
-       fetchItems();
-      }
+    if (showFiltros) {
+      fetchItems();
+    }
     setshowFiltros(!showFiltros);
   };
   const fetchItems = async () => {
-    let response = await prepareCall("GET", null, null);
-    let guiasResponse=await response.json();
+    let guiasResponse = await prepareCall("GET", null, null);
     guardarGuias(guiasResponse);
   };
   const mostrarResultados = (guiasFiltradas) => {
-      guardarGuias(guiasFiltradas);
+    guardarGuias(guiasFiltradas);
   };
   return (
     <div className="list-container-component">
