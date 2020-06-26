@@ -19,6 +19,8 @@ export const prepareCall = async (method, identifiers, data) => {
     identifiers.forEach((param) => {
       composedURL += `/${param}`;
     });
+  } else {
+    composedURL = baseURL;
   }
   return await makeCall(composedURL, options);
 };
@@ -26,12 +28,21 @@ const makeCall = async (url, options) => {
   if (!!options) {
     return fetch(url, options)
       .then((response) => response.json())
-      .then((data) => data)
+      .then((data) => {
+        console.log(data);
+        return data;
+      })
       .catch((err) => err);
   } else {
     return fetch(url, options)
       .then((response) => response.json())
-      .then((data) => data)
-      .catch((err) => err);
+      .then((data) => {
+        console.log(data);
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+        return err;
+      });
   }
 };

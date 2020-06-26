@@ -11,11 +11,10 @@ function List(props) {
   const [checked, setchecked] = useState();
   const marcarComoEnviado = async (ev) => {
     setchecked(ev.currentTarget.checked);
-    console.log(id, "IDDDD", ev.currentTarget.checked, checked);
-    let p = await prepareCall("PUT", [id], {
+    let data = JSON.stringify({
       fueEnviado: ev.currentTarget.checked,
     });
-    console.log(p);
+    await prepareCall("PUT", [id], data);
   };
 
   useEffect(() => {

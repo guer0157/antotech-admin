@@ -3,8 +3,9 @@ import "../../App.scss";
 import "./ListContainer.scss";
 import List from "../../shared/list/List";
 import Agregar from "../../core/Agregar/Agregar";
-import moment from 'moment';
-import { prepareCall } from "../../utils/fetchUtil";
+import moment from "moment";
+import { prepareCall, baseURL } from "../../utils/fetchUtil";
+import Filtros from "../filtros-container/Filtros";
 
 function ListContainer() {
   //useEfect with empty array [] = ComponentDIdMount;
@@ -28,15 +29,16 @@ function ListContainer() {
   const [guias, guardarGuias] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [showToast, setShowToast] = useState(false);
-  const fetchItems = async () => {
-      let guiasResponse = await prepareCall("GET", null, null);
-     let sortedGuias=guiasResponse.sort((a, b)=>{
-         const aFecha=moment(a.fecha).format("DD-MM-YYYY");
-        const bFecha=moment(b.fecha).format("DD-MM-YYYY");
-         return aFecha<bFecha?1:aFecha>bFecha?-1:0;
-});
-    guardarGuias(sortedGuias);
+  const [showFiltros, setshowFiltros] = useState(false);
+  const toggleShowFiltros = () => {
+    setshowFiltros(!showFiltros);
   };
+  const fetchItems = async () => {
+    let guiasResponse = await prepareCall("GET", null, null);
+    // guiasResponse.map((guia) => moment(guia.fecha).format("MMM Do YYYY"));
+    guardarGuias(guiasResponse);
+  };
+  const mostrarResultados = () => {};
   return (
     <div className="list-container-component">
       {showToast && (
@@ -50,6 +52,10 @@ function ListContainer() {
       >
         {showForm ? "Cancelar" : "Agregar"}
       </button>
+      <button className="base-button filtro" onClick={toggleShowFiltros}>
+        Filtros
+      </button>
+      {showFiltros && <Filtros mostrarResultados={mostrarResultados} />}
       {showForm && <Agregar hideForm={toggleShowForm} />}
       <ul className="list-container">
         {guias.map((guia) => (
