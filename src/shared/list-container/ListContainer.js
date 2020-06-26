@@ -31,14 +31,19 @@ function ListContainer() {
   const [showToast, setShowToast] = useState(false);
   const [showFiltros, setshowFiltros] = useState(false);
   const toggleShowFiltros = () => {
+      if(showFiltros){
+       fetchItems();
+      }
     setshowFiltros(!showFiltros);
   };
   const fetchItems = async () => {
-    let guiasResponse = await prepareCall("GET", null, null);
-    // guiasResponse.map((guia) => moment(guia.fecha).format("MMM Do YYYY"));
+    let response = await prepareCall("GET", null, null);
+    let guiasResponse=await response.json();
     guardarGuias(guiasResponse);
   };
-  const mostrarResultados = () => {};
+  const mostrarResultados = (guiasFiltradas) => {
+      guardarGuias(guiasFiltradas);
+  };
   return (
     <div className="list-container-component">
       {showToast && (

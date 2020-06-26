@@ -4,7 +4,7 @@ import "./Filtros.scss";
 import "../../data/fields";
 import { fields } from "../../data/fields";
 import { baseURL } from "../../utils/fetchUtil";
-
+import moment from "moment";
 function Filtros(props) {
   const [filter, setfilter] = useState("free-text");
   const [inputValue, setInputValue] = useState("calle");
@@ -32,19 +32,16 @@ function Filtros(props) {
 
   const saveInputValue = (ev) => {
     let target = ev.currentTarget.value;
-    // if (filter === "fecha") {
-    //   let split = target.split("-");
-    //   target = `${split[2]}-${split[1]}-${split[0]}`;
-    // }
+     if (field === "fecha") {
+         target=moment(target).toISOString().split("T");
+         target=target[0]+"T00:00:00.000Z"
+     }
     setInputValue(target);
   };
-  const fetchFilterQuery = async () => {
-    console.log(`${baseURL}/${field}/${inputValue}`);
-    await fetch(`${baseURL}/${filter}/${inputValue}`)
-      .then((re) => re.json())
-      .then((d) => console.log(d));
-    // let guias = await response.json();
-    // props.mostrarResultados(guias);
+  const fetchFilterQuery = async () => { 
+let response=await fetch(`${baseURL}/${field}/${inputValue}`)
+     let guias = await response.json();
+     props.mostrarResultados(guias);
   };
   return (
     <div className="filtros-component">
