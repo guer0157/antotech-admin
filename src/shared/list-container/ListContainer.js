@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import "../../App.scss";
 import "./ListContainer.scss";
@@ -21,9 +22,7 @@ function ListContainer() {
       }, 3000);
     }
   };
-  useEffect(() => {
-    fetchItems();
-  }, []);
+
   const [guias, guardarGuias] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [showToast, setShowToast] = useState(false);
@@ -34,13 +33,25 @@ function ListContainer() {
     }
     setshowFiltros(!showFiltros);
   };
-  const fetchItems = async () => {
-    let guiasResponse = await prepareCall("GET", null, null);
-    guardarGuias(guiasResponse);
+  const fetchItems = async (data, method) => {
+    switch (method) {
+      case "filter":
+        guardarGuias(data);
+        break;
+      case "delete":
+        let nuevasGuias = [...guias];
+        nuevasGuias.splice(data, 1);
+        guardarGuias(nuevasGuias);
+        break;
+      default:
+        let guiasResponse = await prepareCall("GET", null, null);
+        guardarGuias(guiasResponse);
+        break;
+    }
   };
-  const mostrarResultados = (guiasFiltradas) => {
-    guardarGuias(guiasFiltradas);
-  };
+  useEffect(() => {
+    fetchItems();
+  }, []);
   return (
     <div className="list-container-component">
       {showToast && (
@@ -55,13 +66,18 @@ function ListContainer() {
         {showForm ? "Cancelar" : "Agregar"}
       </button>
       <button className="base-button filtro" onClick={toggleShowFiltros}>
-        Filtros
+        {showFiltros ? "Cerrar" : "Filtros"}
       </button>
-      {showFiltros && <Filtros mostrarResultados={mostrarResultados} />}
+      {showFiltros && <Filtros mostrarResultados={fetchItems} />}
       {showForm && <Agregar hideForm={toggleShowForm} />}
       <ul className="list-container">
-        {guias.map((guia) => (
-          <List key={guia._id} data={guia}></List>
+        {guias.map((guia, index) => (
+          <List
+            key={guia._id}
+            id={index}
+            data={guia}
+            reloadGuias={fetchItems}
+          ></List>
         ))}
       </ul>
     </div>

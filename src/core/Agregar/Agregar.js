@@ -6,6 +6,7 @@ import moment from "moment";
 
 function Agregar(props) {
   const [formState, setformState] = useState({});
+  const [error, setError] = useState(null);
   const handleChange = (ev) => {
     const id = ev.currentTarget.id;
     let value = ev.currentTarget.value;
@@ -25,17 +26,23 @@ function Agregar(props) {
     setformState(newState);
   };
   const guardarGuia = async () => {
-    let guardarGuiaNueva = await prepareCall(
-      "POST",
-      null,
-      JSON.stringify(formState)
-    ).catch((err) => console.log(err.message));
-    if (!!guardarGuiaNueva._id) {
-      props.hideForm(guardarGuiaNueva);
-    }
+    await prepareCall("POST", null, JSON.stringify(formState))
+      .then((guiaNueva) => props.hideForm(guiaNueva))
+      .catch((err) => toggleErrorToast(err));
+  };
+  const toggleErrorToast = (err) => {
+    error === null ? setError(err.message) : setError(null);
   };
   return (
     <div className="agregar-component">
+      {error && (
+        <div className="toast">
+          <div className="close-icon" onClick={toggleErrorToast}>
+            X
+          </div>
+          <div className="error">{error}</div>
+        </div>
+      )}
       <label>Paqueteria</label>
       <input
         className="border-shadow-radius"
@@ -115,7 +122,7 @@ function Agregar(props) {
       />
       <label>Fue enviado</label>
       <input
-        className="border-shadow-radius checkbox"
+        className="checkbox"
         type="checkbox"
         id="fueEnviado"
         onChange={handleChange}

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../../App.scss";
 import "./List.scss";
-import { Link } from "react-router-dom";
 import { prepareCall } from "../../utils/fetchUtil";
 import Moment from "react-moment";
 
 function List(props) {
   const [id, setid] = useState([]);
-  //   const [guia, setGuia] = useState([]);
+  const [guia, setGuia] = useState([]);
   const [checked, setchecked] = useState();
   const marcarComoEnviado = async (ev) => {
     setchecked(ev.currentTarget.checked);
@@ -16,13 +15,22 @@ function List(props) {
     });
     await prepareCall("PUT", [id], data);
   };
+  const deleteItem = async (ev) => {
+    const id = ev.currentTarget.id;
+    // eslint-disable-next-line no-restricted-globals
+    let confirmo = confirm("Esta seguro que quieres borrar esta guia?");
+    if (!confirmo) return;
+    await prepareCall("DELETE", [id], null)
+      .then(() => props.reloadGuias(props.id, "delete"))
+      .catch((error) => console.log(error));
+  };
 
   useEffect(() => {
     setid(props.data._id);
-    // setGuia(props.data);
+    setGuia(props.data);
     setchecked(props.data.fueEnviado);
-  }, [props.data._id, props.data.fueEnviado]);
-  const guia = props.data;
+  }, [props.data._id, props.data.fueEnviado, props.data]);
+
   return (
     <li className="list-component border-shadow-radius">
       <div className="list-item-separator">
@@ -47,12 +55,30 @@ function List(props) {
           <p className="titulo-texto">Direccion</p>
         </div>
         <div className="data-item">
-          <p>{guia.calle + ","}</p>
-          <p>{guia.numero + ","}</p>
-          <p>{guia.ciudad + ","}</p>
-          <p>{guia.estado + ","}</p>
-          <p>{guia.pais + "."}</p>
-          <p>{guia.codigoPostal}</p>
+          <div className="direccion-spacer">
+            <p className="direccion-title">Calle</p>
+            <p>{guia.calle}</p>
+          </div>
+          <div className="direccion-spacer">
+            <p className="direccion-title">Numero</p>
+            <p>{guia.numero}</p>
+          </div>
+          <div className="direccion-spacer">
+            <p className="direccion-title">Ciudad</p>
+            <p>{guia.ciudad}</p>
+          </div>
+          <div className="direccion-spacer">
+            <p className="direccion-title">Estado</p>
+            <p>{guia.estado}</p>
+          </div>
+          <div className="direccion-spacer">
+            <p className="direccion-title">Pais</p>
+            <p>{guia.pais}</p>
+          </div>
+          <div className="direccion-spacer">
+            <p className="direccion-title">Codigo Postal</p>
+            <p>{guia.codigoPostal}</p>
+          </div>
         </div>
       </div>
       <div className=" list-item-separator enviado">
@@ -63,6 +89,7 @@ function List(props) {
           <input
             name="fueEnviado"
             type="checkbox"
+            value={checked}
             checked={checked}
             onChange={marcarComoEnviado}
           />
@@ -94,10 +121,10 @@ function List(props) {
           <p>{guia.verificadoPor}</p>
         </div>
       </div>
-      <div className="list-item-separator">
-        <div className="data-item link">
-          <Link to={`/detalles/${guia._id}`}>Mas detalles</Link>
-        </div>
+      <div className="list-item-separator eliminar">
+        <button className="data-item" id={guia._id} onClick={deleteItem}>
+          Eleminiar
+        </button>
       </div>
     </li>
   );

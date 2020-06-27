@@ -7,7 +7,7 @@
   align-items: $cross-axis;
 }
 
-@mixin MediaQuery {
+@mixin MediaQuery($point) {
   @if $point == "lg" {
     @media only screen and (min-width: $layout-lg-size) {
       @content;

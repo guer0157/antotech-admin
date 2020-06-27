@@ -1,3 +1,4 @@
+@import "./mixins.scss";
 .base-button {
   padding: 0.5rem;
   background-color: $azul;
@@ -11,7 +12,7 @@
 .toast {
   position: absolute;
   top: 3rem;
-  width: 90vw;
+  width: 80vw;
   background-color: rgba(0, 0, 0, 0.8);
   color: $gris;
   margin: 0 auto;
@@ -22,6 +23,10 @@
   > p {
     font-size: 1.5rem;
     margin-top: 1rem;
+  }
+  @include MediaQuery("sm") {
+    min-height: 7rem;
+    overflow-y: visible;
   }
 }
 .border-shadow-radius {

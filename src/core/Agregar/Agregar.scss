@@ -21,4 +21,23 @@
   .checkbox {
     box-shadow: none;
   }
+  > .toast {
+    position: relative;
+    background-color: transparentize($color: $rojo, $amount: 0.1);
+    > .error {
+      width: 90%;
+      line-height: 2rem;
+      font-weight: $bolder;
+    }
+    > .close-icon {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      font-weight: bolder;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      border: 1px solid white;
+      border-radius: 50%;
+    }
+  }
 }

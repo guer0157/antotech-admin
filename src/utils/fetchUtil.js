@@ -1,5 +1,4 @@
 export const baseURL = `https://guiasapi.czarware.tech/api/guias`;
-
 let composedURL = baseURL;
 let options = null;
 export const prepareCall = async (method, identifiers, data) => {
@@ -13,7 +12,17 @@ export const prepareCall = async (method, identifiers, data) => {
         "Content-Type": "application/json",
       },
     };
+  } else if (method === "DELETE") {
+    options = {
+      method: method,
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+    };
   }
+
   if (!!identifiers) {
     composedURL = baseURL;
     identifiers.forEach((param) => {
@@ -27,20 +36,31 @@ export const prepareCall = async (method, identifiers, data) => {
 const makeCall = async (url, options) => {
   if (!!options) {
     return fetch(url, options)
-      .then((response) => response.json())
+      .then((response) => {
+        return response.json();
+      })
       .then((data) => {
+        if (data.type === "Error") {
+          throw Error(data.message);
+        }
         return data;
       })
-      .catch((err) => err);
+      .catch((error) => {
+        throw error;
+      });
   } else {
     return fetch(url, options)
-      .then((response) => response.json())
+      .then((response) => {
+        return response.json();
+      })
       .then((data) => {
+        if (data.type === "Error") {
+          throw Error(data.message);
+        }
         return data;
       })
-      .catch((err) => {
-        console.log(err);
-        return err;
+      .catch((error) => {
+        throw error;
       });
   }
 };
