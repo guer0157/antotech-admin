@@ -1,0 +1,25 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+@import "../../styles/styles.scss";
+
+.auth-component {
+  height: 100vh;
+  > .field-container {
+    min-height: 60%;
+    width: 80%;
+    margin: 1rem auto;
+    @include flex(column, space-evenly, center);
+    > .field-spacer {
+      @include flex(column, center, center);
+      > label {
+        font-weight: $bolder;
+      }
+      > input {
+        margin-top: 0.5rem;
+      }
+    }
+    > .option-toggle-button {
+      background-color: white;
+    }
+  }
+}

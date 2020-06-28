@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../../App.scss";
 import "./List.scss";
 import { prepareCall } from "../../utils/fetchUtil";
@@ -20,6 +21,8 @@ function List(props) {
     // eslint-disable-next-line no-restricted-globals
     let confirmo = confirm("Esta seguro que quieres borrar esta guia?");
     if (!confirmo) return;
+    // let data = JSON.stringify({ archivado: true });
+    // await prepareCall("PUT", [id], data)
     await prepareCall("DELETE", [id], null)
       .then(() => props.reloadGuias(props.id, "delete"))
       .catch((error) => console.log(error));
@@ -33,7 +36,23 @@ function List(props) {
 
   return (
     <li className="list-component border-shadow-radius">
-      <div className="list-item-separator">
+      <Link to={`/detalles/${guia._id}`}>
+        <div className="list">
+          <div>
+            <p>Numero de Guia</p>
+            <p>{guia.numeroGuia}</p>
+          </div>
+          <div>
+            <p>Cliente</p>
+            <p>{guia.nombreCliente}</p>
+          </div>
+          <div>
+            <p>Fecha de envio</p>
+            <Moment format="DD/MM/YYYY">{guia.fecha}</Moment>
+          </div>
+        </div>
+      </Link>
+      {/* <div className="list-item-separator">
         <div className="titulo">
           <p className="titulo-texto">Paqueteria</p>
         </div>
@@ -64,8 +83,16 @@ function List(props) {
             <p>{guia.numero}</p>
           </div>
           <div className="direccion-spacer">
+            <p className="direccion-title">Unidad</p>
+            <p>{guia.unidad}</p>
+          </div>
+          <div className="direccion-spacer">
             <p className="direccion-title">Ciudad</p>
             <p>{guia.ciudad}</p>
+          </div>
+          <div className="direccion-spacer">
+            <p className="direccion-title">Colonia</p>
+            <p>{guia.colonia}</p>
           </div>
           <div className="direccion-spacer">
             <p className="direccion-title">Estado</p>
@@ -123,9 +150,9 @@ function List(props) {
       </div>
       <div className="list-item-separator eliminar">
         <button className="data-item" id={guia._id} onClick={deleteItem}>
-          Eleminiar
+          Archivar
         </button>
-      </div>
+      </div> */}
     </li>
   );
 }

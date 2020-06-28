@@ -71,11 +71,25 @@ function Agregar(props) {
         id="calle"
         onChange={handleChange}
       />
-      <label>Numero/Unidad/Lt</label>
+      <label>Numero de Calle</label>
       <input
         className="border-shadow-radius"
         type="number"
         id="numero"
+        onChange={handleChange}
+      />
+      <label>Unidad/Lote</label>
+      <input
+        className="border-shadow-radius"
+        type="numero"
+        id="unidad"
+        onChange={handleChange}
+      />
+      <label>Colonia/Manzana</label>
+      <input
+        className="border-shadow-radius"
+        type="text"
+        id="colonia"
         onChange={handleChange}
       />
       <label>Ciudad</label>
@@ -90,6 +104,13 @@ function Agregar(props) {
         className="border-shadow-radius"
         type="text"
         id="estado"
+        onChange={handleChange}
+      />
+      <label>Codigo postal</label>
+      <input
+        className="border-shadow-radius"
+        type="number"
+        id="codigoPostal"
         onChange={handleChange}
       />
       <label>Pais</label>
@@ -111,13 +132,6 @@ function Agregar(props) {
         className="border-shadow-radius"
         type="text"
         id="productos"
-        onChange={handleChange}
-      />
-      <label>Codigo postal</label>
-      <input
-        className="border-shadow-radius"
-        type="number"
-        id="codigoPostal"
         onChange={handleChange}
       />
       <label>Fue enviado</label>

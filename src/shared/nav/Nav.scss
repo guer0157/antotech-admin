@@ -1,7 +1,19 @@
 @import "../../styles/mixins.scss";
 @import "../../styles/variables.scss";
 .nav-component {
-  @include flex(row, center, center);
+  @include flex(row, flex-end, center);
   background-color: $gris;
   height: 3rem;
+  .nav-link {
+    margin: 0 1rem;
+    &.disabled {
+      a {
+        color: grey;
+        text-decoration: none;
+        &:active {
+          background-color: none;
+        }
+      }
+    }
+  }
 }

@@ -1,0 +1,46 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+@import "../../styles//styles.scss";
+.list-component {
+  list-style: none;
+
+  .list-container {
+    @include flex(column, center, center);
+
+    > .list-item-separator {
+      margin-bottom: 0.5rem;
+      width: 100%;
+      background-color: $gris;
+      text-align: center;
+      padding: 0.5rem 0;
+      &:first-child {
+        border-radius: 10px;
+      }
+      > .titulo {
+        font-weight: $bolder;
+      }
+      &.direccion > .data-item {
+        @include flex(row wrap, space-evenly, flex-start);
+        > .direccion-spacer {
+          margin: 0.3rem;
+          > .direccion-title {
+            font-weight: $bolder;
+          }
+        }
+      }
+      &.enviado-fecha {
+        @include flex(row, space-evenly, flex-start);
+        width: 100%;
+        > div {
+          > .titulo {
+            font-weight: $bolder;
+          }
+          > .data-item > input {
+            width: 2rem;
+            height: 2rem;
+          }
+        }
+      }
+    }
+  }
+}
