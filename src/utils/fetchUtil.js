@@ -1,6 +1,5 @@
-// export const baseURL = `https://guiasapi.czarware.tech/api/guias`;
-export const baseURL = `http://localhost:5000/api/guias`;
-export const authURL = `http://localhost:4000/api`;
+export const baseURL = `https://guiasapi.czarware.tech/api/guias`;
+export const authURL = `https://antotech.czarware.tech/api`;
 export let headers = {
   "Access-Control-Allow-Origin": "*",
   "Content-Type": "application/json",
