@@ -32,18 +32,15 @@ function Auth() {
       })
       .then((data) => {
         sendToAuth(data);
-        console.log(data, "Fstate", formState);
       })
       .catch((error) => console.log("error", error));
     setformState({});
   };
 
   const sendToAuth = (data) => {
-    console.log(data);
     if (data && data.type === "click") data.preventDefault();
     const sanitizeFormStateForLogIn = { ...formState };
     delete sanitizeFormStateForLogIn.name;
-    console.log("sanitizeFormStateForLogIn", sanitizeFormStateForLogIn);
     let body = JSON.stringify(sanitizeFormStateForLogIn);
     let options = {
       method: "POST",
@@ -58,8 +55,8 @@ function Auth() {
       .then((data) => {
         localStorage.setItem("user", data.user);
         localStorage.setItem("x-auth-token", data.token);
-        window.location.replace("/");
       })
+      .then(() => window.location.replace("/"))
       .catch((error) => console.log("error", error));
   };
   return (
