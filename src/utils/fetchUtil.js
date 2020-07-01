@@ -6,6 +6,7 @@ export let headers = {
 };
 let composedURL = baseURL;
 let options = null;
+export const timeStamp = "T10:00:00.000Z";
 export const prepareCall = async (method, identifiers, data) => {
   headers["x-auth-token"] = localStorage.getItem("x-auth-token");
   if (!!data) {
@@ -35,7 +36,6 @@ export const prepareCall = async (method, identifiers, data) => {
 };
 const makeCall = async (url, options) => {
   console.log("url, options", url, options);
-  // if (!!options) {
   return fetch(url, options)
     .then((response) => {
       return response.json();
@@ -49,29 +49,4 @@ const makeCall = async (url, options) => {
     .catch((error) => {
       throw error;
     });
-  // } else {
-  //   // let authToken = localStorage.getItem("x-auth-token");
-  //   // let options = {
-  //   //   method: "GET",
-  //   //   mode: "cors",
-  //   //   headers: {
-  //   //     "Access-Control-Allow-Origin": "*",
-  //   //     "Content-Type": "application/json",
-  //   //     "x-auth-token": authToken,
-  //   //   },
-  //   // };
-  //   return fetch(url, options)
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       if (data.type === "Error") {
-  //         throw Error(data.message);
-  //       }
-  //       return data;
-  //     })
-  //     .catch((error) => {
-  //       throw error;
-  //     });
-  // }
 };

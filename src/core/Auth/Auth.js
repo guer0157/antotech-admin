@@ -33,6 +33,7 @@ function Auth() {
       .then((data) => {
         sendToAuth(data);
       })
+      .then()
       .catch((error) => console.log("error", error));
     setformState({});
   };
@@ -56,7 +57,9 @@ function Auth() {
         localStorage.setItem("user", data.user);
         localStorage.setItem("x-auth-token", data.token);
       })
-      .then(() => window.location.replace("/"))
+      .then(() => {
+        return window.location.replace("/");
+      })
       .catch((error) => console.log("error", error));
   };
   return (

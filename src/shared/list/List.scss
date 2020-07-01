@@ -3,18 +3,14 @@
 @import "../../styles//styles.scss";
 
 .list-component {
-  // @include flex(row wrap, space-evenly, stretch);
-  // margin: 0.5rem auto;
-  // text-align: center;
-  // width: 90%;
-  // padding: 0.5rem 0.5rem;
-  // background-color: $gris;
   width: 95%;
   margin: 0 auto;
+  margin-bottom: 1rem;
   .list {
     @include flex(row, space-evenly, center);
     font-size: small;
     padding: 0.3rem;
+    margin-bottom: 1rem;
     > div {
       word-wrap: wrap;
     }

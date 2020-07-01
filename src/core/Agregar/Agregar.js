@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../App.scss";
 import "./Agregar.scss";
-import { prepareCall } from "../../utils/fetchUtil";
+import { prepareCall, timeStamp } from "../../utils/fetchUtil";
 import moment from "moment";
 
 function Agregar(props) {
@@ -16,7 +16,7 @@ function Agregar(props) {
       value = ev.currentTarget.value;
     } else if (id === "fecha") {
       let target = moment(ev.currentTarget.value).toISOString().split("T");
-      value = target[0] + "T00:00:00.000Z";
+      value = target[0] + timeStamp;
     } else {
       value = ev.currentTarget.value;
     }

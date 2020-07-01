@@ -58,6 +58,7 @@ function ListContainer(props) {
         let response = await guiasResponse;
         if (!!response) {
           setisLoggedIn(true);
+          console.log("believe", response);
           guardarGuias(response);
         }
         break;
